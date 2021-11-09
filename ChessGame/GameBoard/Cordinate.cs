@@ -19,6 +19,29 @@ namespace ChessGame.GameBoard
             cordinatePair = new int[]{x,y};
         }
 
+        public override bool Equals(object obj)
+        {
+            if(obj.GetType() == this.GetType())
+            {
+                Cordinate cordinate = (Cordinate)obj;
+                if (cordinate.XCordinate == this.XCordinate && cordinate.YCordinate == this.YCordinate)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
+        public override int GetHashCode()
+        {
+            return xCordinate.GetHashCode();
+        }
+
         public int XCordinate { get => xCordinate; set => xCordinate = value; }
         public int YCordinate { get => yCordinate; set => yCordinate = value; }
         public int[] CordinatePair { get => cordinatePair; set => cordinatePair = value; }

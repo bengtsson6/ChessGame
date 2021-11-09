@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ChessGame.GameBoard
 {
-    public static class BoardUTILS
+    public class BoardUTILS
     {
         private static readonly int numOfTiles = 64;
 
         public static bool IsCordinateValid(Cordinate cordinate)
         {
-            if (cordinate.XCordinate >= 0 && cordinate.XCordinate <= 8 && cordinate.YCordinate >= 0 && cordinate.YCordinate <= 8)
+            if (cordinate.XCordinate >= 0 && cordinate.XCordinate <= 7 && cordinate.YCordinate >= 0 && cordinate.YCordinate <= 7)
             {
                 return true;
             }

@@ -34,7 +34,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +50,7 @@
     <Compile Include="Alliance.cs" />
     <Compile Include="GameBoard\Board.cs" />
     <Compile Include="GameBoard\BoardUTILS.cs" />
+    <Compile Include="GameBoard\Builder.cs" />
     <Compile Include="GameBoard\Cordinate.cs" />
     <Compile Include="GameBoard\EmptyTile.cs" />
     <Compile Include="GameBoard\OccupiedTile.cs" />
@@ -60,6 +65,7 @@
     <Compile Include="Pieces\Knigth.cs" />
     <Compile Include="Pieces\Pawn.cs" />
     <Compile Include="Pieces\Piece.cs" />
+    <Compile Include="Pieces\PieceType.cs" />
     <Compile Include="Pieces\Queen.cs" />
     <Compile Include="Pieces\Rock.cs" />
     <Compile Include="Program.cs" />
@@ -67,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

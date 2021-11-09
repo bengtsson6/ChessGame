@@ -10,14 +10,13 @@ namespace ChessGame.Pieces
 {
     public class Knigth : Piece
     {
-        public Knigth(Cordinate cordinate, Alliance alliance) : base(cordinate, alliance)
+        public Knigth(Cordinate cordinate, Alliance alliance, PieceType pieceType) : base(cordinate, alliance, pieceType)
         {
         }
 
         public override List<Move> LegalMoves(Board board)
         {
             List<Move> moves = new List<Move>();
-
             foreach(Cordinate cordinate in CandidateCordinates())
             {
                 if (BoardUTILS.IsCordinateValid(cordinate))
@@ -28,7 +27,7 @@ namespace ChessGame.Pieces
                         moves.Add(new NonCaptureMove(this, cordinate));
                     } else
                     {
-                        Piece pieceAtDestination = tile.GetPiece();
+                       Piece pieceAtDestination = tile.GetPiece();
                        if(pieceAtDestination.Alliance != this.Alliance)
                         {
                             moves.Add(new CaptureMove(this, cordinate, tile.GetPiece()));

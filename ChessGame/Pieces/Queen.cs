@@ -10,7 +10,7 @@ namespace ChessGame.Pieces
 {
     public class Queen : Piece
     {
-        public Queen(Cordinate cordinate, Alliance alliance) : base(cordinate, alliance)
+        public Queen(Cordinate cordinate, Alliance alliance, PieceType pieceType) : base(cordinate, alliance, pieceType)
         {
 
         }

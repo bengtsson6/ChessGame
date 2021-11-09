@@ -17,6 +17,18 @@ namespace ChessGame.GameBoard
             this.cordinate = cordinate;
         }
 
+        public static Tile CreateTile(Cordinate cordinate, Piece piece)
+        {
+            if (piece == null)
+            {
+                return new EmptyTile(cordinate);
+            }
+            else
+            {
+                return new OccupiedTile(cordinate, piece);
+            }
+        }
+
         public abstract bool IsTileOccupied();
 
         public abstract Piece GetPiece();
