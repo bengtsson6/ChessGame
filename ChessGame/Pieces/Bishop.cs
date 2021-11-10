@@ -18,6 +18,8 @@ namespace ChessGame.Pieces
         {
         }
 
+        //Methods gets gets the CandidateCordinates from the CalculateMovementPaths Method and then checks if the movement paths is occupied by other
+        //pieces given the Board parameter, returns a list with valid moves.
         public override List<Move> LegalMoves(Board board)
         {
             Cordinate[][] CandidateCordinates = CalculateMovementPaths(this.Cordinate);
@@ -47,7 +49,9 @@ namespace ChessGame.Pieces
 
 
         //A Bishop can move diagonal in four different directions, UPLEFT, UPRIGHT, DOWNLEFT and DOWNRIGHT
-        public Cordinate[][] CalculateMovementPaths(Cordinate currentCordinate)
+        //Method returns cordinates for each of these directions given the current Piece Position
+        //Note this method is private since other classes don't need the move paths, just the legal moves which is available in LegalMoves() method
+        private Cordinate[][] CalculateMovementPaths(Cordinate currentCordinate)
         {
             Cordinate[][] paths = new Cordinate[4][];
             int currentXCordinate = currentCordinate.XCordinate;
