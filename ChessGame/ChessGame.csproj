@@ -49,7 +49,7 @@
   <ItemGroup>
     <Compile Include="Alliance.cs" />
     <Compile Include="GameBoard\Board.cs" />
-    <Compile Include="GameBoard\BoardUtils.cs" />
+    <Compile Include="Utils\BoardUtils.cs" />
     <Compile Include="GameBoard\Builder.cs" />
     <Compile Include="GameBoard\Cordinate.cs" />
     <Compile Include="GameBoard\EmptyTile.cs" />
@@ -57,7 +57,7 @@
     <Compile Include="Game\CaptureMove.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game\Move.cs" />
-    <Compile Include="Game\MoveUtils.cs" />
+    <Compile Include="Utils\MoveUtils.cs" />
     <Compile Include="Game\NonCaptureMove.cs" />
     <Compile Include="Game\Player.cs" />
     <Compile Include="GameBoard\Tile.cs" />
