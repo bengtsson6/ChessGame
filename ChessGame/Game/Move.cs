@@ -12,14 +12,17 @@ namespace ChessGame.Game
     {
         private Piece movingPiece;
         private Cordinate destinationCordinate;
+        private Board board;
 
-        public Move(Piece movingPiece, Cordinate destination)
+        public Move(Piece movingPiece, Cordinate destination, Board board)
         {
-            this.movingPiece = movingPiece;
-            this.destinationCordinate = destination;
+            this.MovingPiece = movingPiece;
+            this.DestinationCordinate = destination;
+            this.Board = board;
         }
         
         public Cordinate DestinationCordinate { get => destinationCordinate; set => destinationCordinate = value; }
         public Piece MovingPiece { get => movingPiece; set => movingPiece = value; }
+        public Board Board { get => board; set => board = value; }
     }
 }

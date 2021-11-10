@@ -17,20 +17,20 @@ namespace ChessGame.Pieces
         public override List<Move> LegalMoves(Board board)
         {
             List<Move> moves = new List<Move>();
-            foreach(Cordinate cordinate in CandidateCordinates())
+            foreach(Cordinate cordinate in CandidateDestinationCordinates())
             {
-                if (BoardUTILS.IsCordinateValid(cordinate))
+                if (BoardUtils.IsCordinateValid(cordinate))
                 {
                     Tile tile = board.GetTile(cordinate);
                     if (!tile.IsTileOccupied())
                     {
-                        moves.Add(new NonCaptureMove(this, cordinate));
+                        moves.Add(new NonCaptureMove(this, cordinate, board));
                     } else
                     {
                        Piece pieceAtDestination = tile.GetPiece();
                        if(pieceAtDestination.Alliance != this.Alliance)
                         {
-                            moves.Add(new CaptureMove(this, cordinate, tile.GetPiece()));
+                            moves.Add(new CaptureMove(this, cordinate, board,tile.GetPiece()));
                         }                  
                     }
                 }      
@@ -41,7 +41,7 @@ namespace ChessGame.Pieces
 
         //Lists a Knight possible movements in chess
         //This could possible be cleaned up a bit since x and y cordinates is reused in multiple "full" cordinates.
-        public List<Cordinate> CandidateCordinates()
+        public List<Cordinate> CandidateDestinationCordinates()
         {
             List<Cordinate> candidateCordinates = new List<Cordinate>();
             Cordinate currentCordinate = this.Cordinate;

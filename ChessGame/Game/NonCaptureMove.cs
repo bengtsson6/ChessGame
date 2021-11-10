@@ -10,7 +10,7 @@ namespace ChessGame.Game
 {
     public class NonCaptureMove : Move
     {
-        public NonCaptureMove(Piece movingPiece, Cordinate destination) : base(movingPiece, destination)
+        public NonCaptureMove(Piece movingPiece, Cordinate destination, Board board) : base(movingPiece, destination, board)
         {
         }
     }

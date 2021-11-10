@@ -11,7 +11,7 @@ namespace ChessGame.Game
     public class CaptureMove : Move
     {
         private Piece attackedPiece;
-        public CaptureMove(Piece movingPiece, Cordinate destination, Piece attackedPiece) : base(movingPiece, destination)
+        public CaptureMove(Piece movingPiece, Cordinate destination, Board board ,Piece attackedPiece) : base(movingPiece, destination, board)
         {
             this.attackedPiece = attackedPiece;
         }

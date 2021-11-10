@@ -13,7 +13,8 @@ namespace ChessGame
         {
             Board board = Board.SetPiecesStartPosition();
             Console.WriteLine(board.ToString());
-            Console.ReadLine();        
+            Console.ReadLine();
+
         }
     }
 }

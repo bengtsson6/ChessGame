@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessGame.GameBoard
 {
-    public class BoardUTILS
+    public class BoardUtils
     {
         private static readonly int numOfTiles = 64;
 
