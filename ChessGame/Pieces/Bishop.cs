@@ -1,10 +1,12 @@
-﻿using ChessGame.Game;
-using ChessGame.GameBoard;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChessGame.Game;
+using ChessGame.GameBoard;
+using ChessGame.Utils;
 
 namespace ChessGame.Pieces
 {

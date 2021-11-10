@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ChessGame.GameBoard;
 
-namespace ChessGame.Game
+namespace ChessGame.Utils
 {
     class MoveUtils
     {
@@ -31,35 +31,35 @@ namespace ChessGame.Game
                 Cordinate upLeftCor = new Cordinate(currentXCordinate - i, currentYCordinate - i);
                 if (BoardUtils.IsCordinateValid(upLeftCor))
                 {
-                    upLeftCordinates.Append(upLeftCor);
+                    upLeftCordinates.Add(upLeftCor);
                 }
                 //Calculate the UPRIGTH Path and only add inbounds cordinates
                 Cordinate upRightCor = new Cordinate(currentXCordinate + i, currentYCordinate - i);
                 if (BoardUtils.IsCordinateValid(upRightCor))
                 {
-                    upRightCordinates.Append(upRightCor);
+                    upRightCordinates.Add(upRightCor);
                 }
                 //Calculate the DOWNRIGTH Path and only add inbounds cordinates
                 Cordinate downRightCor = new Cordinate(currentXCordinate + i, currentYCordinate + i);
                 if (BoardUtils.IsCordinateValid(downRightCor))
                 {
-                    downRightCordinates.Append(downRightCor);
+                    downRightCordinates.Add(downRightCor);
                 }
                 //Calculate the DOWNLEFT path and only add inbounds cordinates
-                Cordinate downLeftCor = new Cordinate(currentXCordinate - 1, currentYCordinate + 1);
+                Cordinate downLeftCor = new Cordinate(currentXCordinate - i, currentYCordinate + i);
                 if (BoardUtils.IsCordinateValid(downLeftCor))
                 {
-                    downLeftCordinates.Append(downLeftCor);
+                    downLeftCordinates.Add(downLeftCor);
                 }
             }
             paths[0] = upLeftCordinates.ToArray();
             paths[1] = upRightCordinates.ToArray();
-            paths[2] = downLeftCordinates.ToArray();
-            paths[3] = downRightCordinates.ToArray();
+            paths[2] = downRightCordinates.ToArray();
+            paths[3] = downLeftCordinates.ToArray();
             return paths;
         }
 
-        public static Cordinate[][] CalculateLinearMovement(Cordinate currentCordinate)
+        public static Cordinate[][] CalculateStraigthLineMovement(Cordinate currentCordinate)
         {
             Cordinate[][] paths = new Cordinate[MoveUtils.LinearMoveDirections][];
             int currentXCordinate = currentCordinate.XCordinate;
@@ -73,26 +73,26 @@ namespace ChessGame.Game
             for (int i = 1; i < MoveUtils.MaxMoveLength + 1; i++)
             {
                 //Calculate UP path and check if cordinate inbounds of board
-                Cordinate upCordinate = new Cordinate(currentXCordinate, currentYCordinate - 1);
+                Cordinate upCordinate = new Cordinate(currentXCordinate, currentYCordinate - i);
                 if (BoardUtils.IsCordinateValid(upCordinate))
                 {
                     upCordinates.Add(upCordinate);
                 }
 
                 //Calculate DOWN path and check if cordinate inbounds of board
-                Cordinate downCordinate = new Cordinate(currentXCordinate, currentYCordinate + 1);
+                Cordinate downCordinate = new Cordinate(currentXCordinate, currentYCordinate + i);
                 if (BoardUtils.IsCordinateValid(downCordinate))
                 {
                     downCordinates.Add(downCordinate);
                 }
                 //Calculate RIGHT path and check if cordinate inbounds of board
-                Cordinate rightCordinate = new Cordinate(currentXCordinate + 1, currentYCordinate);
+                Cordinate rightCordinate = new Cordinate(currentXCordinate + i, currentYCordinate);
                 if (BoardUtils.IsCordinateValid(rightCordinate))
                 {
                     rightCordinates.Add(rightCordinate);
                 }
                 //Calculate LEFT path and check if cordinate inbounds of board
-                Cordinate leftCordinate = new Cordinate(currentXCordinate - 1, currentYCordinate);
+                Cordinate leftCordinate = new Cordinate(currentXCordinate - i, currentYCordinate);
                 if (BoardUtils.IsCordinateValid(leftCordinate))
                 {
                     leftCordinates.Add(leftCordinate);
