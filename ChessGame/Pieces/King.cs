@@ -11,13 +11,10 @@ namespace ChessGame.Pieces
 {
     public class King : Piece
     {
-        private bool isFirstMove;
         public King(Cordinate cordinate, Alliance alliance, PieceType pieceType) : base(cordinate, alliance ,pieceType)
         {
-            IsFirstMove = true;
-        }
 
-        public bool IsFirstMove { get => isFirstMove; set => isFirstMove = value; }
+        }
 
         public override List<Move> LegalMoves(Board board)
         {
@@ -52,6 +49,11 @@ namespace ChessGame.Pieces
             }
             
             return legalMoves;
+        }
+
+        public override Piece MovePiece(Move move)
+        {
+            throw new NotImplementedException();
         }
 
         private bool IsCastlePossilbe()

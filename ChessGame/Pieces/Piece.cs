@@ -39,6 +39,8 @@ namespace ChessGame.Pieces
         }
 
         public abstract List<Move> LegalMoves(Board board);
+
+        public abstract Piece MovePiece(Move move);
        
         public Cordinate Cordinate { get => cordinate; set => cordinate = value; }
         public Alliance Alliance { get => alliance; set => alliance = value; }

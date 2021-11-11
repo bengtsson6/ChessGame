@@ -10,6 +10,11 @@ namespace ChessGame.Utils
     public class BoardUtils
     {
         private static readonly int numOfTiles = 64;
+        private static readonly int firstRank = 7;
+        private static readonly int secondRank = 6;
+        private static readonly int seventhRank = 1;
+        private static readonly int eigthRank = 0;
+
 
         public static bool IsCordinateValid(Cordinate cordinate)
         {
@@ -24,5 +29,9 @@ namespace ChessGame.Utils
         }
 
         public static int NumOfTiles { get => numOfTiles;}
+        public static int FirstRank => firstRank;
+        public static int SecondRank => secondRank;
+        public static int SeventhRank => seventhRank;
+        public static int EigthRank => eigthRank;
     }
 }

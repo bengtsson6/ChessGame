@@ -48,5 +48,10 @@ namespace ChessGame.Pieces
             }
             return legalMoves;
         }
+
+        public override Piece MovePiece(Move move)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

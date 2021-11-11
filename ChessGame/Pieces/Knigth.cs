@@ -58,5 +58,10 @@ namespace ChessGame.Pieces
             candidateCordinates.Add(new Cordinate(x - 1, y - 2));
             return candidateCordinates;
         }
+
+        public override Piece MovePiece(Move move)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
