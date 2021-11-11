@@ -27,40 +27,62 @@ namespace ChessGame.Pieces
         }
 
 
-        public List<Cordinate> CandidateCordinate()
+        //The calculation for candidate cordinates for the pawn differs since the movement direction is different depending if it's,
+        //a black or white piece, also 
+        public List<Cordinate> CandidateCordinates()
         {
             Cordinate currentCordinate = this.Cordinate;
             List<Cordinate> candidateCordinates = new List<Cordinate>();
             if (Alliance == Alliance.BLACK)
             {
-                Cordinate oneMoveForward = new Cordinate(currentCordinate.XCordinate, currentCordinate.YCordinate + 1);
+                Cordinate oneTileForward = new Cordinate(currentCordinate.XCordinate, currentCordinate.YCordinate + 1);
                 Cordinate leftDiagonal = new Cordinate(currentCordinate.XCordinate - 1, currentCordinate.YCordinate + 1);
                 Cordinate rigthDiagonal = new Cordinate(currentCordinate.XCordinate + 1, currentCordinate.YCordinate + 1);
-                candidateCordinates.Add(oneMoveForward);
+                candidateCordinates.Add(oneTileForward);
                 candidateCordinates.Add(leftDiagonal);
                 candidateCordinates.Add(rigthDiagonal);
-
+                if (IsPawnOnSeventhRank())
+                {
+                    Cordinate twoTilesForward = new Cordinate(currentCordinate.XCordinate, currentCordinate.YCordinate + 2);
+                    candidateCordinates.Add(twoTilesForward);
+                }
             }
-
-
-            //Move direction dependent on ALLIANCE if BLACK y+, White y-
-            //IF SECOND or SEVENTH RANK then 2 squares jumps are possilbe
-            //Is Capture possible - another method
-
+            if (Alliance == Alliance.WHITE)
+            {
+                Cordinate oneTileForward = new Cordinate(currentCordinate.XCordinate, currentCordinate.YCordinate - 1);
+                Cordinate leftDiagonal = new Cordinate(currentCordinate.XCordinate - 1, currentCordinate.YCordinate - 1);
+                Cordinate rigthDiagonal = new Cordinate(currentCordinate.XCordinate + 1, currentCordinate.YCordinate - 1);
+                candidateCordinates.Add(oneTileForward);
+                candidateCordinates.Add(leftDiagonal);
+                candidateCordinates.Add(rigthDiagonal);
+                if (IsPawnOnSecondRank())
+                {
+                    Cordinate twoTilesForward = new Cordinate(currentCordinate.XCordinate, currentCordinate.YCordinate - 2);
+                    candidateCordinates.Add(twoTilesForward);
+                }
+            }
             return candidateCordinates;
         }
         public bool IsPawnOnSecondRank()
         {
-            return this.Cordinate.XCordinate == BoardUtils.SecondRank ? true : false;
+            return this.Cordinate.YCordinate == BoardUtils.SecondRank;
  
         }
         public bool IsPawnOnSeventhRank()
         {
-            return this.Cordinate.XCordinate == BoardUtils.SeventhRank ? true : false;
+            return this.Cordinate.YCordinate == BoardUtils.SeventhRank;
         }
         public bool IsDiagonalTileOccupied(Cordinate diagonalCordinate)
         {
             return true;
+        }
+        public bool IsCordinateDiagonal(int currentYCordinate, int candidateYCordinate)
+        {
+            if (currentYCordinate != candidateYCordinate)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
