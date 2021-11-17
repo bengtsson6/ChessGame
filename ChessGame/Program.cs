@@ -18,23 +18,32 @@ namespace ChessGame
             Console.WriteLine(board.ToString());
             Console.ReadLine();
 
-            Cordinate c = new Cordinate(0, 1);
+            Tile[,] tiles = board.GameBoard;
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    Console.WriteLine(tiles[i, j].Cordinate.XCordinate + " = " + i + "     " + tiles[i, j].Cordinate.YCordinate + " = " + j);
+                    Console.WriteLine(tiles[i, j].GetType());
+                }       
+            }
+
+        Console.ReadLine();
+
+            Cordinate c = new Cordinate(1, 0);
             Piece k = board.GetTile(c).GetPiece();
             List<Move> moves = k.LegalMoves(board);
+            Console.WriteLine(k.GetType());
+            Console.WriteLine(moves.Count);
             foreach (Move move in moves)
             {
                 Console.WriteLine(move.DestinationCordinate.XCordinate + "," + move.DestinationCordinate.YCordinate);
             }
 
-            Pawn p1 = new Pawn(new Cordinate(6, 6), Alliance.WHITE, PieceType.PAWN);
-            Pawn p2 = new Pawn(new Cordinate(5, 1), Alliance.WHITE, PieceType.PAWN);
-            List<Cordinate> cords = p1.CandidateCordinate();
-            foreach(Cordinate cor in cords)
-            {
-                Console.WriteLine(cor.XCordinate + ", " + cor.YCordinate);
-            }
-            Console.WriteLine(p1.IsPawnOnSecondRank());
-            Console.WriteLine(p2.IsPawnOnSecondRank());
+            Pawn p1 = (Pawn) board.GetTile(new Cordinate(1, 1)).GetPiece();
+            List<Move> moves1 = p1.LegalMoves(board);
+            List<Cordinate> cords = p1.CandidateCordinates();
+            Console.WriteLine(p1 + " " + moves1.Count + " " + cords.Count);
             Console.ReadLine();
 
         }
