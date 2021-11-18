@@ -54,11 +54,11 @@
     <Compile Include="GameBoard\Cordinate.cs" />
     <Compile Include="GameBoard\EmptyTile.cs" />
     <Compile Include="GameBoard\OccupiedTile.cs" />
-    <Compile Include="Game\CaptureMove.cs" />
+    <Compile Include="Moves\CaptureMove.cs" />
     <Compile Include="Game\Game.cs" />
-    <Compile Include="Game\Move.cs" />
+    <Compile Include="Moves\Move.cs" />
     <Compile Include="Utils\MoveUtils.cs" />
-    <Compile Include="Game\NonCaptureMove.cs" />
+    <Compile Include="Moves\NonCaptureMove.cs" />
     <Compile Include="Game\Player.cs" />
     <Compile Include="GameBoard\Tile.cs" />
     <Compile Include="Pieces\Bishop.cs" />

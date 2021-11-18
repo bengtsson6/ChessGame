@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessGame.Game
+namespace ChessGame.Moves
 {
     public class CaptureMove : Move
     {

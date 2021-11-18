@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ChessGame.GameBoard;
 using ChessGame.Pieces;
 
-namespace ChessGame.Game
+namespace ChessGame.Moves
 {
     public abstract class Move
     {

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ChessGame.GameBoard;
 using ChessGame.Game;
+using ChessGame.Moves;
 
 namespace ChessGame.Pieces
 {

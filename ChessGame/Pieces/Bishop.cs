@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ChessGame.Game;
 using ChessGame.GameBoard;
 using ChessGame.Utils;
+using ChessGame.Moves;
 
 namespace ChessGame.Pieces
 {
