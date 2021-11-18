@@ -28,7 +28,6 @@ namespace ChessGame
                     Console.WriteLine(tiles[i, j].GetType());
                 }       
             }*/
-
         Console.ReadLine();
 
             Cordinate c = new Cordinate(1, 0);

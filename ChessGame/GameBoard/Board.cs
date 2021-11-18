@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ChessGame.Pieces;
+using ChessGame.Game;
+using ChessGame.Moves;
 
 namespace ChessGame.GameBoard
 {
@@ -12,16 +14,38 @@ namespace ChessGame.GameBoard
         private Tile[,] gameBoard;
         private List<Piece> whitePieces;
         private List<Piece> blackPieces;
+        private Player whitePlayer;
+        private Player blackPlayer;
 
         public Tile[,] GameBoard { get => gameBoard; set => gameBoard = value; }
         public List<Piece> BlackPieces { get => blackPieces; set => blackPieces = value; }
         public List<Piece> WhitePieces { get => whitePieces; set => whitePieces = value; }
+        public Player WhitePlayer { get => whitePlayer; set => whitePlayer = value; }
+        public Player BlackPlayer { get => blackPlayer; set => blackPlayer = value; }
 
         public Board(Builder builder)
         {
             this.GameBoard = CreateTiles(builder);
             this.BlackPieces = ActivePieces(this, Alliance.BLACK);
             this.WhitePieces = ActivePieces(this, Alliance.WHITE);
+            List<Move> whitePiecesLegalMoves = CalculateActivePiecesLegalMoves(this.WhitePieces);
+            List<Move> blackPiecesLegalMoves = CalculateActivePiecesLegalMoves(this.BlackPieces);
+            WhitePlayer = new Player(Alliance.WHITE, this, whitePiecesLegalMoves, blackPiecesLegalMoves);
+            BlackPlayer = new Player(Alliance.BLACK, this, blackPiecesLegalMoves, whitePiecesLegalMoves);
+
+        }
+
+        private List<Move> CalculateActivePiecesLegalMoves(List<Piece> activePieces)
+        {
+            List<Move> legalMoves = new List<Move>();
+            foreach (Piece piece in activePieces)
+            {
+                foreach (Move move in piece.LegalMoves(this))
+                {
+                    legalMoves.Add(move);
+                }
+            }
+            return legalMoves;
         }
 
         public List<Piece> ActivePieces(Board board, Alliance alliance)
