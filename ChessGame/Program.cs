@@ -7,6 +7,7 @@ using ChessGame.GameBoard;
 using ChessGame.Game;
 using ChessGame.Utils;
 using ChessGame.Pieces;
+using ChessGame.Moves;
 
 namespace ChessGame
 {
@@ -18,7 +19,7 @@ namespace ChessGame
             Console.WriteLine(board.ToString());
             Console.ReadLine();
 
-            Tile[,] tiles = board.GameBoard;
+            /*Tile[,] tiles = board.GameBoard;
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
@@ -26,7 +27,7 @@ namespace ChessGame
                     Console.WriteLine(tiles[i, j].Cordinate.XCordinate + " = " + i + "     " + tiles[i, j].Cordinate.YCordinate + " = " + j);
                     Console.WriteLine(tiles[i, j].GetType());
                 }       
-            }
+            }*/
 
         Console.ReadLine();
 
@@ -40,10 +41,14 @@ namespace ChessGame
                 Console.WriteLine(move.DestinationCordinate.XCordinate + "," + move.DestinationCordinate.YCordinate);
             }
 
-            Pawn p1 = (Pawn) board.GetTile(new Cordinate(1, 1)).GetPiece();
+            Pawn p1 = (Pawn) board.GetTile(new Cordinate(6, 6)).GetPiece();
             List<Move> moves1 = p1.LegalMoves(board);
             List<Cordinate> cords = p1.CandidateCordinates();
             Console.WriteLine(p1 + " " + moves1.Count + " " + cords.Count);
+            foreach(Move move in moves1)
+            {
+                Console.WriteLine(move.DestinationCordinate.XCordinate + "," + move.DestinationCordinate.YCordinate);
+            }
             Console.ReadLine();
 
         }

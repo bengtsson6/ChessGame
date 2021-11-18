@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChessGame.Moves;
 
 namespace ChessGame.Pieces
 {
@@ -43,20 +44,36 @@ namespace ChessGame.Pieces
                                 legalMoves.Add(new CaptureMove(this, currentCandidateCordinate, board, occupyingPiece));
                             }
                         }
-                    } else
+                    } 
+                    //Check one move forward
+                    if((currentCandidateCordinate.YCordinate == this.Cordinate.YCordinate + 1 ||
+                       currentCandidateCordinate.YCordinate == this.Cordinate.YCordinate - 1) && 
+                       currentCandidateCordinate.XCordinate == this.Cordinate.XCordinate)
                     {
-                        //Check straigth movement rule
-                        //Do something else than break since it just working (maybe) because i know the order of the moves in list - a bit lazy
                         if (!potentialDestinationTile.IsTileOccupied())
                         {
                             if (currentCandidateCordinate.YCordinate == BoardUtils.EigthRank || currentCandidateCordinate.YCordinate == BoardUtils.FirstRank)
                             {
-                                //Do something here to create a promotion move
+                                //Do something here to create a promotion move                           
                             }
-                            legalMoves.Add(new NonCaptureMove(this, currentCandidateCordinate, board));
+                            legalMoves.Add(new NonCaptureMove(this, currentCandidateCordinate, board));                            
+                        } 
+                    }
+                    //Check pawn jump
+                    if ((currentCandidateCordinate.YCordinate == this.Cordinate.YCordinate + 2 ||
+                       currentCandidateCordinate.YCordinate == this.Cordinate.YCordinate - 2) &&
+                       currentCandidateCordinate.XCordinate == this.Cordinate.XCordinate)
+                    {
+                        Tile jumpedOverTile;
+                        if (this.Alliance == Alliance.BLACK) {
+                            jumpedOverTile = board.GetTile(new Cordinate(currentCandidateCordinate.XCordinate, currentCandidateCordinate.YCordinate - 1));
                         } else
                         {
-                            break;
+                            jumpedOverTile = board.GetTile(new Cordinate(currentCandidateCordinate.XCordinate, currentCandidateCordinate.YCordinate + 1));
+                        }
+                        if(!potentialDestinationTile.IsTileOccupied() && !jumpedOverTile.IsTileOccupied())
+                        {
+                            legalMoves.Add(new NonCaptureMove(this, currentCandidateCordinate, board));
                         }
                     }
                 }
