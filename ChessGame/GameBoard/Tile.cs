@@ -29,7 +29,7 @@ namespace ChessGame.GameBoard
                 return new OccupiedTile(cordinate, piece);
             }
         }
-        public List<Move> CalculateAttackOnTile(List<Move> moves)
+        public List<Move> AttacksOnTile(List<Move> moves)
         {
             List<Move> attackMovesOnTile = new List<Move>();
             foreach (Move move in moves) 

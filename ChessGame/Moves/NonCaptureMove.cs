@@ -13,5 +13,10 @@ namespace ChessGame.Moves
         public NonCaptureMove(Piece movingPiece, Cordinate destination, Board board) : base(movingPiece, destination, board)
         {
         }
+
+        public override Board Execute()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -16,12 +16,14 @@ namespace ChessGame.GameBoard
         private List<Piece> blackPieces;
         private Player whitePlayer;
         private Player blackPlayer;
+        private Player currentPlayer;
 
         public Tile[,] GameBoard { get => gameBoard; set => gameBoard = value; }
         public List<Piece> BlackPieces { get => blackPieces; set => blackPieces = value; }
         public List<Piece> WhitePieces { get => whitePieces; set => whitePieces = value; }
         public Player WhitePlayer { get => whitePlayer; set => whitePlayer = value; }
         public Player BlackPlayer { get => blackPlayer; set => blackPlayer = value; }
+        public Player CurrentPlayer { get => currentPlayer; set => currentPlayer = value; }
 
         public Board(Builder builder)
         {
@@ -32,6 +34,7 @@ namespace ChessGame.GameBoard
             List<Move> blackPiecesLegalMoves = CalculateActivePiecesLegalMoves(this.BlackPieces);
             WhitePlayer = new Player(Alliance.WHITE, this, whitePiecesLegalMoves, blackPiecesLegalMoves);
             BlackPlayer = new Player(Alliance.BLACK, this, blackPiecesLegalMoves, whitePiecesLegalMoves);
+
 
         }
 

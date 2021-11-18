@@ -8,8 +8,8 @@ namespace ChessGame.Moves
 {
     public enum MoveStatus
     {
-        SUCCESS,
-        ILLEGAL,
-        PUTPLAYERINCHECK
+        DONE,
+        ILLEGAL_MOVE,
+        LEAVES_PLAYER_IN_CHECK
     }
 }

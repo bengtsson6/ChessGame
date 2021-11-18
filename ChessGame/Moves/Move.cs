@@ -20,6 +20,8 @@ namespace ChessGame.Moves
             this.DestinationCordinate = destination;
             this.Board = board;
         }
+
+        public abstract Board Execute();
         
         public Cordinate DestinationCordinate { get => destinationCordinate; set => destinationCordinate = value; }
         public Piece MovingPiece { get => movingPiece; set => movingPiece = value; }

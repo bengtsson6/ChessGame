@@ -25,7 +25,7 @@ namespace ChessGame.Game
             LegalMoves = legalMoves;
             OpponentsLegalMoves = opponentsLegalMoves;
             PlayerKing = EstablishKing();
-            IsInCheck = CalculatePlayerInCheck(opponentsLegalMoves);
+            IsInCheck = IsPlayerInCheck(opponentsLegalMoves, Board);
         }
         public Board Board { get => board; set => board = value; }
         public List<Move> LegalMoves { get => legalMoves; set => legalMoves = value; }
@@ -34,10 +34,10 @@ namespace ChessGame.Game
         public Alliance Alliance { get => alliance; set => alliance = value; }
         public bool IsInCheck { get => isInCheck; set => isInCheck = value; }
         
-        public bool CalculatePlayerInCheck(List<Move> moves)
+        public bool IsPlayerInCheck(List<Move> moves, Board board)
         {
             Tile kingTile = board.GetTile(this.PlayerKing.Cordinate);
-            if(kingTile.CalculateAttackOnTile(moves).Count == 0)
+            if(kingTile.AttacksOnTile(moves).Count == 0)
             {
                 return false;
             } else
@@ -55,6 +55,19 @@ namespace ChessGame.Game
                 }
             }
             return null;
+        }
+
+        public bool HasEscapeMove()
+        {
+            foreach(Move move in LegalMoves)
+            {
+                MoveTransition moveTransition = MakeMove(move);
+                if (moveTransition.MoveStatus == MoveStatus.DONE)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public List<Piece> GetActivePieces()
@@ -83,26 +96,40 @@ namespace ChessGame.Game
             return null;
         }
 
-        public bool IsMoveValid(Move move)
+        public bool IsMoveLegal(Move move)
         {
             //Need to change the move Equals + Hash metod?          
            return this.LegalMoves.Contains(move);          
         }
         public bool IsInCheckMate()
         {
-            return false;
+            return IsInCheck && !HasEscapeMove();
         }
         public bool IsInStalemate()
         {
-            return false;
+            return !IsInCheck && !HasEscapeMove();
         }
         public bool IsCastled()
         {
             return false;
         }
+
+        //TODO may need to do some changes depenging on movetransition devlopment
         public MoveTransition MakeMove(Move move)
         {
-            return null;
+            if(!IsMoveLegal(move))
+            {
+                return new MoveTransition(move, this.board, this.board, MoveStatus.ILLEGAL_MOVE);
+            }
+
+            Board transitionBoard = move.Execute();
+
+            if (IsPlayerInCheck(transitionBoard.CurrentPlayer.GetOpponent().LegalMoves, transitionBoard))
+            {
+                return new MoveTransition(move, this.Board, this.Board, MoveStatus.LEAVES_PLAYER_IN_CHECK);
+            }
+
+            return new MoveTransition(move, transitionBoard, this.Board, MoveStatus.DONE);
         }
     }
 }

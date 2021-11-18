@@ -16,5 +16,10 @@ namespace ChessGame.Moves
             this.attackedPiece = attackedPiece;
         }
         public Piece AttackedPiece { get => attackedPiece; set => attackedPiece = value; }
+
+        public override Board Execute()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
