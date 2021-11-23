@@ -32,10 +32,11 @@ namespace ChessGame.Pieces
                     if (!possibleDestinationTile.IsTileOccupied())
                     {
                         legalMoves.Add(new NonCaptureMove(this, CurrentCandidateCordinate, board));
-                    } else
+                    }
+                    if(possibleDestinationTile.IsTileOccupied())
                     {
                         Piece pieceAtDestinationTile = board.GetTile(CurrentCandidateCordinate).GetPiece();
-                        if(pieceAtDestinationTile.PieceType != this.PieceType)
+                        if(pieceAtDestinationTile.Alliance != this.Alliance)
                         {
                             legalMoves.Add(new CaptureMove(this, CurrentCandidateCordinate, board, pieceAtDestinationTile));
                         }

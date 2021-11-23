@@ -27,7 +27,7 @@ namespace ChessGame
                     Console.WriteLine(tiles[i, j].Cordinate.XCordinate + " = " + i + "     " + tiles[i, j].Cordinate.YCordinate + " = " + j);
                     Console.WriteLine(tiles[i, j].GetType());
                 }       
-            }*/
+            }
         Console.ReadLine();
 
             Cordinate c = new Cordinate(1, 0);
@@ -49,7 +49,19 @@ namespace ChessGame
                 Console.WriteLine(move.DestinationCordinate.XCordinate + "," + move.DestinationCordinate.YCordinate);
             }
             Console.ReadLine();
+        */
 
+            //Do some test for the player class
+            //Get opponent is workning
+            //Legal moves seem to work
+            //IsInCheck to
+            Player blackPlayer = board.BlackPlayer;
+            Player whitePlayer = board.WhitePlayer;
+            List<Move> blackMoves = blackPlayer.LegalMoves;
+            List<Move> whiteMoves = whitePlayer.LegalMoves;
+            Console.WriteLine(blackPlayer);
+
+            Console.ReadLine();
         }
     }
 }

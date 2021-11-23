@@ -46,7 +46,7 @@ namespace ChessGame.Pieces
             }
             if (IsCastlePossilbe())
             {
-
+                
             }
             
             return legalMoves;
@@ -59,7 +59,7 @@ namespace ChessGame.Pieces
 
         private bool IsCastlePossilbe()
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

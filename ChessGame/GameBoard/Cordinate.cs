@@ -34,7 +34,8 @@ namespace ChessGame.GameBoard
 
         public override string ToString()
         {
-            return base.ToString();
+            string returnString = XCordinate.ToString() + ", " + YCordinate.ToString();
+            return returnString;
         }
 
         public override int GetHashCode()

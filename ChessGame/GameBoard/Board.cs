@@ -35,7 +35,6 @@ namespace ChessGame.GameBoard
             WhitePlayer = new Player(Alliance.WHITE, this, whitePiecesLegalMoves, blackPiecesLegalMoves);
             BlackPlayer = new Player(Alliance.BLACK, this, blackPiecesLegalMoves, whitePiecesLegalMoves);
 
-
         }
 
         private List<Move> CalculateActivePiecesLegalMoves(List<Piece> activePieces)
