@@ -12,7 +12,7 @@ namespace ChessGame.Pieces
 {
     public class King : Piece
     {
-        public King(Cordinate cordinate, Alliance alliance, PieceType pieceType) : base(cordinate, alliance ,pieceType)
+        public King(Cordinate cordinate, Alliance alliance) : base(cordinate, alliance , PieceType.KING)
         {
 
         }
@@ -54,7 +54,7 @@ namespace ChessGame.Pieces
 
         public override Piece MovePiece(Move move)
         {
-            throw new NotImplementedException();
+            return new King(move.DestinationCordinate, move.MovingPiece.Alliance);
         }
 
         private bool IsCastlePossilbe()

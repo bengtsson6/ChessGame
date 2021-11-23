@@ -14,6 +14,7 @@ namespace ChessGame.Game
         private Board board;
         private List<Move> legalMoves;
         private List<Move> opponentsLegalMoves;
+        private List<Piece> activePieces;
         private King playerKing;
         private Alliance alliance;
         private bool isInCheck;
@@ -24,8 +25,9 @@ namespace ChessGame.Game
             Board = board;
             LegalMoves = legalMoves;
             OpponentsLegalMoves = opponentsLegalMoves;
-            PlayerKing = EstablishKing();
-            IsInCheck = IsPlayerInCheck(opponentsLegalMoves, Board);
+            PlayerKing = EstablishKing(board);
+            IsInCheck = IsPlayerInCheck(opponentsLegalMoves, board);
+            ActivePieces = CalculatePlayersActivePieces(board);
         }
         public Board Board { get => board; set => board = value; }
         public List<Move> LegalMoves { get => legalMoves; set => legalMoves = value; }
@@ -33,7 +35,8 @@ namespace ChessGame.Game
         public King PlayerKing { get => playerKing; set => playerKing = value; }
         public Alliance Alliance { get => alliance; set => alliance = value; }
         public bool IsInCheck { get => isInCheck; set => isInCheck = value; }
-        
+        public List<Piece> ActivePieces { get => activePieces; set => activePieces = value; }
+
         public bool IsPlayerInCheck(List<Move> moves, Board board)
         {
             Tile kingTile = board.GetTile(this.PlayerKing.Cordinate);
@@ -45,9 +48,9 @@ namespace ChessGame.Game
                 return true;
             }
         } 
-        private King EstablishKing()
+        private King EstablishKing(Board board)
         {
-            foreach(Piece piece in GetActivePieces())
+            foreach(Piece piece in CalculatePlayersActivePieces(board))
             {
                 if(piece.PieceType == PieceType.KING)
                 {
@@ -69,8 +72,7 @@ namespace ChessGame.Game
             }
             return false;
         }
-
-        public List<Piece> GetActivePieces()
+        private List<Piece> CalculatePlayersActivePieces(Board board)
         {
             if(this.Alliance == Alliance.BLACK)
             {
@@ -82,7 +84,6 @@ namespace ChessGame.Game
             }
             return null;
         }
-
         public Player GetOpponent()
         {
             if(this.Alliance == Alliance.BLACK)
@@ -95,7 +96,6 @@ namespace ChessGame.Game
             }
             return null;
         }
-
         public bool IsMoveLegal(Move move)
         {
             //Need to change the move Equals + Hash metod?          

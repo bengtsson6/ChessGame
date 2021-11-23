@@ -38,11 +38,29 @@ namespace ChessGame.Pieces
                 return returnString;
             }
         }
+        public override bool Equals(object obj)
+        {
+            if (this == obj)
+            {
+                return true;
+            }
+            if(!(obj is Piece))
+            {
+                return false;
+            }
+            Piece otherPiece = obj as Piece;
+            return Cordinate.Equals(otherPiece.Cordinate) 
+                    && PieceType == otherPiece.PieceType 
+                    && Alliance == otherPiece.Alliance;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
 
         public abstract List<Move> LegalMoves(Board board);
-
-        public abstract Piece MovePiece(Move move);
-       
+        public abstract Piece MovePiece(Move move);  
         public Cordinate Cordinate { get => cordinate; set => cordinate = value; }
         public Alliance Alliance { get => alliance; set => alliance = value; }
         public PieceType PieceType { get => pieceType; set => pieceType = value; }

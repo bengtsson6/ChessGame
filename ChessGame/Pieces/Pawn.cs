@@ -12,7 +12,7 @@ namespace ChessGame.Pieces
 {
     public class Pawn : Piece
     {
-        public Pawn(Cordinate cordinate, Alliance alliance, PieceType pieceType) : base(cordinate, alliance, pieceType)
+        public Pawn(Cordinate cordinate, Alliance alliance) : base(cordinate, alliance, PieceType.PAWN)
         {
         }
 
@@ -84,7 +84,7 @@ namespace ChessGame.Pieces
 
         public override Piece MovePiece(Move move)
         {
-            throw new NotImplementedException();
+            return new Pawn(move.DestinationCordinate, move.MovingPiece.Alliance);
         }
 
 

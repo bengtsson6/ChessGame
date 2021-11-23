@@ -16,7 +16,28 @@ namespace ChessGame.Moves
 
         public override Board Execute()
         {
-            throw new NotImplementedException();
+            Builder builder = new Builder();
+            foreach (Piece piece in Board.CurrentPlayer.ActivePieces)      
+            {
+                if (!piece.Equals(MovingPiece))
+                {
+                    builder.SetPiece(piece);
+                }
+            }
+
+            foreach(Piece piece in Board.CurrentPlayer.GetOpponent().ActivePieces)
+            {
+                if (!piece.Equals(MovingPiece))
+                {
+                    builder.SetPiece(piece);
+                }
+            }
+
+          
+            builder.SetPiece(MovingPiece.MovePiece(this));
+            builder.SetNextMoveMaker(Board.CurrentPlayer.GetOpponent().Alliance);
+
+            return new Board(builder);
         }
     }
 }

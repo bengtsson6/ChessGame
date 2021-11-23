@@ -12,7 +12,7 @@ namespace ChessGame.Pieces
 {
     public class Queen : Piece
     {
-        public Queen(Cordinate cordinate, Alliance alliance, PieceType pieceType) : base(cordinate, alliance, pieceType)
+        public Queen(Cordinate cordinate, Alliance alliance) : base(cordinate, alliance, PieceType.QUEEN)
         {
 
         }
@@ -52,7 +52,7 @@ namespace ChessGame.Pieces
 
         public override Piece MovePiece(Move move)
         {
-            throw new NotImplementedException();
+            return new Queen(move.DestinationCordinate, move.MovingPiece.Alliance);
         }
     }
 }
