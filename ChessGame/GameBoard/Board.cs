@@ -36,7 +36,6 @@ namespace ChessGame.GameBoard
             BlackPlayer = new Player(Alliance.BLACK, this, blackPiecesLegalMoves, whitePiecesLegalMoves);
             CurrentPlayer = DecideCurrentPlayer(WhitePlayer, BlackPlayer, builder.NextMoveMaker);
         }
-
         private List<Move> CalculateActivePiecesLegalMoves(List<Piece> activePieces)
         {
             List<Move> legalMoves = new List<Move>();
@@ -49,7 +48,6 @@ namespace ChessGame.GameBoard
             }
             return legalMoves;
         }
-
         private List<Piece> ActivePieces(Board board, Alliance alliance)
         {
             List<Piece> pieces = new List<Piece>();
@@ -69,7 +67,6 @@ namespace ChessGame.GameBoard
             }
             return pieces;
         }
-
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
@@ -88,9 +85,7 @@ namespace ChessGame.GameBoard
                 }
                 builder.Append("\n");
             }
-
             return builder.ToString();
-
         }
         public Tile[,] CreateTiles(Builder builder)
         {
@@ -150,7 +145,6 @@ namespace ChessGame.GameBoard
             builder.SetPiece(new Pawn(new Cordinate(6, 1), Alliance.BLACK));
             builder.SetPiece(new Pawn(new Cordinate(7, 1), Alliance.BLACK));
 
-
             //Set the WHITE pieces
             builder.SetPiece(new Rock(new Cordinate(0, 7), Alliance.WHITE));
             builder.SetPiece(new Knigth(new Cordinate(1, 7), Alliance.WHITE));
@@ -171,10 +165,8 @@ namespace ChessGame.GameBoard
             builder.SetPiece(new Pawn(new Cordinate(7, 6), Alliance.WHITE));
 
             builder.SetNextMoveMaker(Alliance.WHITE);
-
             return builder.Build();
         }
-
         public Tile GetTile(Cordinate cordinate)
         {
             return GameBoard[cordinate.XCordinate, cordinate.YCordinate]; 

@@ -19,7 +19,7 @@ namespace ChessGame
             Console.WriteLine(board.ToString());
             Console.ReadLine();
 
-            Tile[,] tiles = board.GameBoard;
+            /*Tile[,] tiles = board.GameBoard;
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
@@ -48,7 +48,7 @@ namespace ChessGame
             {
                 Console.WriteLine(move.DestinationCordinate.XCordinate + "," + move.DestinationCordinate.YCordinate);
             }
-            Console.ReadLine();
+            Console.ReadLine();*/
         
 
             //Do some test for the player class
@@ -59,7 +59,10 @@ namespace ChessGame
             Player whitePlayer = board.WhitePlayer;
             List<Move> blackMoves = blackPlayer.LegalMoves;
             List<Move> whiteMoves = whitePlayer.LegalMoves;
+            Piece piece = board.GetTile(new Cordinate(0, 1)).GetPiece();
+            Move move = piece.LegalMoves(board)[0];
             Console.WriteLine(blackPlayer);
+            Console.WriteLine(blackPlayer.IsMoveLegal(move));
 
             Console.ReadLine();
         }

@@ -21,8 +21,6 @@ namespace ChessGame.Pieces
             this.Alliance = alliance;
             this.PieceType = pieceType;
         }
-
-
         public override string ToString()
         {
             if (this.Alliance == Alliance.BLACK)
@@ -38,16 +36,12 @@ namespace ChessGame.Pieces
                 return returnString;
             }
         }
-
-
         public abstract List<Move> LegalMoves(Board board);
         public abstract Piece MovePiece(Move move);
-
         public override bool Equals(object obj)
         {
             return Equals(obj as Piece);
         }
-
         public bool Equals(Piece other)
         {
             return other != null &&
@@ -55,7 +49,6 @@ namespace ChessGame.Pieces
                    alliance == other.alliance &&
                    pieceType == other.pieceType;
         }
-
         public override int GetHashCode()
         {
             int hashCode = 1072848307;
@@ -64,7 +57,6 @@ namespace ChessGame.Pieces
             hashCode = hashCode * -1521134295 + pieceType.GetHashCode();
             return hashCode;
         }
-
         public Cordinate Cordinate { get => cordinate; set => cordinate = value; }
         public Alliance Alliance { get => alliance; set => alliance = value; }
         public PieceType PieceType { get => pieceType; set => pieceType = value; }

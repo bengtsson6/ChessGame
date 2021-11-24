@@ -24,19 +24,15 @@ namespace ChessGame.Moves
                     builder.SetPiece(piece);
                 }
             }
-
             foreach(Piece piece in Board.CurrentPlayer.GetOpponent().ActivePieces)
             {
                 if (!piece.Equals(MovingPiece))
                 {
                     builder.SetPiece(piece);
                 }
-            }
-
-          
+            }        
             builder.SetPiece(MovingPiece.MovePiece(this));
             builder.SetNextMoveMaker(Board.CurrentPlayer.GetOpponent().Alliance);
-
             return new Board(builder);
         }
     }

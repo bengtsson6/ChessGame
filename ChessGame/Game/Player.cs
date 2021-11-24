@@ -59,7 +59,6 @@ namespace ChessGame.Game
             }
             return null;
         }
-
         public bool HasEscapeMove()
         {
             foreach(Move move in LegalMoves)
@@ -97,8 +96,7 @@ namespace ChessGame.Game
             return null;
         }
         public bool IsMoveLegal(Move move)
-        {
-            //Need to change the move Equals + Hash metod?          
+        {                    
            return this.LegalMoves.Contains(move);          
         }
         public bool IsInCheckMate()
