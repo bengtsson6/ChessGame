@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessGame.GameBoard
 {
-    public class Cordinate
+    public class Cordinate : IEquatable<Cordinate>
     {
         private int xCordinate;
         private int yCordinate;
@@ -19,7 +19,7 @@ namespace ChessGame.GameBoard
             cordinatePair = new int[]{x,y};
         }
 
-        public override bool Equals(object obj)
+        /*public override bool Equals(object obj)
         {
             if(obj.GetType() == this.GetType())
             {
@@ -30,7 +30,7 @@ namespace ChessGame.GameBoard
                 }
             }
             return false;
-        }
+        }*/
 
         public override string ToString()
         {
@@ -38,10 +38,30 @@ namespace ChessGame.GameBoard
             return returnString;
         }
 
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Cordinate);
+        }
+
+        public bool Equals(Cordinate other)
+        {
+            return other != null &&
+                   XCordinate == other.XCordinate &&
+                   YCordinate == other.YCordinate;
+        }
+
         public override int GetHashCode()
         {
-            return xCordinate.GetHashCode();
+            int hashCode = 909658841;
+            hashCode = hashCode * -1521134295 + XCordinate.GetHashCode();
+            hashCode = hashCode * -1521134295 + YCordinate.GetHashCode();
+            return hashCode;
         }
+
+        /* public override int GetHashCode()
+         {
+             return xCordinate.GetHashCode();
+         }*/
 
         public int XCordinate { get => xCordinate; set => xCordinate = value; }
         public int YCordinate { get => yCordinate; set => yCordinate = value; }

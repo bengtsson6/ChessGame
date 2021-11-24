@@ -9,7 +9,7 @@ using ChessGame.Moves;
 
 namespace ChessGame.Pieces
 {
-    public abstract class Piece
+    public abstract class Piece : IEquatable<Piece>
     {
         private Cordinate cordinate;
         private Alliance alliance;
@@ -38,29 +38,33 @@ namespace ChessGame.Pieces
                 return returnString;
             }
         }
+
+
+        public abstract List<Move> LegalMoves(Board board);
+        public abstract Piece MovePiece(Move move);
+
         public override bool Equals(object obj)
         {
-            if (this == obj)
-            {
-                return true;
-            }
-            if(!(obj is Piece))
-            {
-                return false;
-            }
-            Piece otherPiece = obj as Piece;
-            return Cordinate.Equals(otherPiece.Cordinate) 
-                    && PieceType == otherPiece.PieceType 
-                    && Alliance == otherPiece.Alliance;
+            return Equals(obj as Piece);
+        }
+
+        public bool Equals(Piece other)
+        {
+            return other != null &&
+                   Cordinate.Equals(other.Cordinate) &&
+                   alliance == other.alliance &&
+                   pieceType == other.pieceType;
         }
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            int hashCode = 1072848307;
+            hashCode = hashCode * -1521134295 + EqualityComparer<Cordinate>.Default.GetHashCode(cordinate);
+            hashCode = hashCode * -1521134295 + alliance.GetHashCode();
+            hashCode = hashCode * -1521134295 + pieceType.GetHashCode();
+            return hashCode;
         }
 
-        public abstract List<Move> LegalMoves(Board board);
-        public abstract Piece MovePiece(Move move);  
         public Cordinate Cordinate { get => cordinate; set => cordinate = value; }
         public Alliance Alliance { get => alliance; set => alliance = value; }
         public PieceType PieceType { get => pieceType; set => pieceType = value; }

@@ -19,7 +19,7 @@ namespace ChessGame
             Console.WriteLine(board.ToString());
             Console.ReadLine();
 
-            /*Tile[,] tiles = board.GameBoard;
+            Tile[,] tiles = board.GameBoard;
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
@@ -49,7 +49,7 @@ namespace ChessGame
                 Console.WriteLine(move.DestinationCordinate.XCordinate + "," + move.DestinationCordinate.YCordinate);
             }
             Console.ReadLine();
-        */
+        
 
             //Do some test for the player class
             //Get opponent is workning
