@@ -12,10 +12,9 @@ namespace ChessGame.Pieces
 {
     public class Knigth : Piece
     {
-        public Knigth(Cordinate cordinate, Alliance alliance, PieceType pieceType) : base(cordinate, alliance, pieceType)
+        public Knigth(Cordinate cordinate, Alliance alliance, bool isFirstMove) : base(cordinate, alliance, PieceType.KNIGTH, isFirstMove)
         {
         }
-
         public override List<Move> LegalMoves(Board board)
         {
             List<Move> moves = new List<Move>();
@@ -39,8 +38,6 @@ namespace ChessGame.Pieces
             }
             return moves;
         }
-
-
         //Lists a Knight possible movements in chess
         //This could possible be cleaned up a bit since x and y cordinates is reused in multiple "full" cordinates.
         public List<Cordinate> CandidateDestinationCordinates()
@@ -62,7 +59,7 @@ namespace ChessGame.Pieces
 
         public override Piece MovePiece(Move move)
         {
-            throw new NotImplementedException();
+            return new Knigth(move.DestinationCordinate, move.MovingPiece.Alliance, false);
         }
     }
 }

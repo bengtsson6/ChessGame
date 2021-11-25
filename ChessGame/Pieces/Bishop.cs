@@ -14,7 +14,7 @@ namespace ChessGame.Pieces
     public class Bishop : Piece
     {
 
-        public Bishop(Cordinate cordinate, Alliance alliance, PieceType pieceType) : base(cordinate, alliance, pieceType)
+        public Bishop(Cordinate cordinate, Alliance alliance, bool isFirstMove) : base(cordinate, alliance, PieceType.BISHOP, isFirstMove)
         {
         }
         //Bishops moves diagonal, to get the CandidateCordiantes for the bishops current position this method calls a method in MoveUtils that returns
@@ -32,10 +32,11 @@ namespace ChessGame.Pieces
                     if (!possibleDestinationTile.IsTileOccupied())
                     {
                         legalMoves.Add(new NonCaptureMove(this, CurrentCandidateCordinate, board));
-                    } else
+                    }
+                    if(possibleDestinationTile.IsTileOccupied())
                     {
                         Piece pieceAtDestinationTile = board.GetTile(CurrentCandidateCordinate).GetPiece();
-                        if(pieceAtDestinationTile.PieceType != this.PieceType)
+                        if(pieceAtDestinationTile.Alliance != this.Alliance)
                         {
                             legalMoves.Add(new CaptureMove(this, CurrentCandidateCordinate, board, pieceAtDestinationTile));
                         }
@@ -48,7 +49,7 @@ namespace ChessGame.Pieces
 
         public override Piece MovePiece(Move move)
         {
-            throw new NotImplementedException();
+            return new Bishop(move.DestinationCordinate, move.MovingPiece.Alliance, false);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace ChessGame.Pieces
 {
     public class Rock : Piece
     {
-        public Rock(Cordinate cordinate, Alliance alliance, PieceType pieceType) : base(cordinate, alliance, pieceType)
+        public Rock(Cordinate cordinate, Alliance alliance, bool isFirstMove) : base(cordinate, alliance, PieceType.ROCK, isFirstMove)
         {
 
         }
@@ -51,7 +51,7 @@ namespace ChessGame.Pieces
 
         public override Piece MovePiece(Move move)
         {
-            throw new NotImplementedException();
+            return new Rock(move.DestinationCordinate, move.MovingPiece.Alliance, false);
         }
     }
 }

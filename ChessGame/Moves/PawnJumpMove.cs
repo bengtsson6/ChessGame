@@ -8,37 +8,34 @@ using System.Threading.Tasks;
 
 namespace ChessGame.Moves
 {
-    public class CaptureMove : Move
+    //Class is needed to set jumpedPawn as possible enpassantcapturemove
+    public class PawnJumpMove : Move
     {
-        private Piece attackedPiece;
-        public CaptureMove(Piece movingPiece, Cordinate destination, Board board ,Piece attackedPiece) : base(movingPiece, destination, board)
+        public PawnJumpMove(Piece movingPiece, Cordinate destination, Board board) : base(movingPiece, destination, board)
         {
-            this.attackedPiece = attackedPiece;
         }
-        public Piece AttackedPiece { get => attackedPiece; set => attackedPiece = value; }
 
-        //Excluding the captured piece when creating the new board
         public override Board Execute()
         {
             Builder builder = new Builder();
             foreach (Piece piece in Board.CurrentPlayer.ActivePieces)
             {
-                if (!piece.Equals(MovingPiece) && !piece.Equals(AttackedPiece))
+                if (!piece.Equals(MovingPiece))
                 {
                     builder.SetPiece(piece);
                 }
             }
             foreach (Piece piece in Board.CurrentPlayer.GetOpponent().ActivePieces)
             {
-                if (!piece.Equals(MovingPiece) && !piece.Equals(AttackedPiece))
+                if (!piece.Equals(MovingPiece))
                 {
                     builder.SetPiece(piece);
                 }
             }
-
-            builder.SetPiece(MovingPiece.MovePiece(this));
+            Piece movedPiece = MovingPiece.MovePiece(this);
+            builder.SetPiece(movedPiece);
             builder.SetNextMoveMaker(Board.CurrentPlayer.GetOpponent().Alliance);
-
+            builder.EnPassantPawn = movedPiece;
             return builder.Build();
         }
     }

@@ -11,6 +11,7 @@ namespace ChessGame.GameBoard
     {
         private Dictionary<Cordinate, Piece> boardConfig;
         private Alliance nextMoveMaker;
+        private Piece enPassantPawn;
 
         public Builder()
         {
@@ -37,5 +38,6 @@ namespace ChessGame.GameBoard
 
         public Dictionary<Cordinate, Piece> BoardConfig { get => boardConfig; set => boardConfig = value; }
         public Alliance NextMoveMaker { get => nextMoveMaker; set => nextMoveMaker = value; }
+        public Piece EnPassantPawn { get => enPassantPawn; set => enPassantPawn = value; }
     }
 }

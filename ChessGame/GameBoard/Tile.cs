@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ChessGame.GameBoard;
 using ChessGame.Pieces;
+using ChessGame.Moves;
 
 namespace ChessGame.GameBoard
 {
@@ -27,6 +28,18 @@ namespace ChessGame.GameBoard
             {
                 return new OccupiedTile(cordinate, piece);
             }
+        }
+        public List<Move> AttacksOnTile(List<Move> moves)
+        {
+            List<Move> attackMovesOnTile = new List<Move>();
+            foreach (Move move in moves) 
+            {
+                if (move.DestinationCordinate.Equals(this.Cordinate))
+                {
+                    attackMovesOnTile.Add(move);
+                }
+            }
+            return attackMovesOnTile;
         }
 
         public abstract bool IsTileOccupied();
