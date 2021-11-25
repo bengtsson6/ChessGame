@@ -33,7 +33,7 @@ namespace ChessGame.Moves
             }        
             builder.SetPiece(MovingPiece.MovePiece(this));
             builder.SetNextMoveMaker(Board.CurrentPlayer.GetOpponent().Alliance);
-            return new Board(builder);
+            return builder.Build();
         }
     }
 }

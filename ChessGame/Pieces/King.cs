@@ -12,11 +12,12 @@ namespace ChessGame.Pieces
 {
     public class King : Piece
     {
-        public King(Cordinate cordinate, Alliance alliance) : base(cordinate, alliance , PieceType.KING)
+        public King(Cordinate cordinate, Alliance alliance, bool isFirstMove) : base(cordinate, alliance , PieceType.KING, isFirstMove)
         {
 
         }
-
+        //The Castle move contains move logic for two pieces and therefore i will impement it in the Player class since the player contain
+        //has both thoose pieces
         public override List<Move> LegalMoves(Board board)
         {
             List<Move> legalMoves = new List<Move>();
@@ -43,23 +44,13 @@ namespace ChessGame.Pieces
                         }
                     }
                 }
-            }
-            if (IsCastlePossilbe())
-            {
-                
-            }
-            
+            }            
             return legalMoves;
         }
 
         public override Piece MovePiece(Move move)
         {
-            return new King(move.DestinationCordinate, move.MovingPiece.Alliance);
-        }
-
-        private bool IsCastlePossilbe()
-        {
-            return true;
+            return new King(move.DestinationCordinate, move.MovingPiece.Alliance, false);
         }
     }
 }

@@ -60,10 +60,11 @@ namespace ChessGame
             List<Move> blackMoves = blackPlayer.LegalMoves;
             List<Move> whiteMoves = whitePlayer.LegalMoves;
             Piece piece = board.GetTile(new Cordinate(0, 1)).GetPiece();
-            Move move = piece.LegalMoves(board)[0];
-            Console.WriteLine(blackPlayer);
-            Console.WriteLine(blackPlayer.IsMoveLegal(move));
+            Move move = whitePlayer.LegalMoves[0];
+            Console.WriteLine(whitePlayer.IsMoveLegal(move));
+            Board newBoard = whitePlayer.MakeMove(move).TransitionBoard;
 
+            Console.WriteLine(newBoard.ToString());
             Console.ReadLine();
         }
     }

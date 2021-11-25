@@ -127,42 +127,42 @@ namespace ChessGame.GameBoard
         {
             Builder builder = new Builder();
             //Set the BLACK pieces
-            builder.SetPiece(new Rock(new Cordinate(0, 0), Alliance.BLACK));
-            builder.SetPiece(new Knigth(new Cordinate(1, 0), Alliance.BLACK));
-            builder.SetPiece(new Bishop(new Cordinate(2, 0), Alliance.BLACK));
-            builder.SetPiece(new Queen(new Cordinate(3, 0), Alliance.BLACK));
-            builder.SetPiece(new King(new Cordinate(4, 0), Alliance.BLACK));
-            builder.SetPiece(new Bishop(new Cordinate(5, 0), Alliance.BLACK));
-            builder.SetPiece(new Knigth(new Cordinate(6, 0), Alliance.BLACK));
-            builder.SetPiece(new Rock(new Cordinate(7, 0), Alliance.BLACK));
+            builder.SetPiece(new Rock(new Cordinate(0, 0), Alliance.BLACK, true));
+            builder.SetPiece(new Knigth(new Cordinate(1, 0), Alliance.BLACK, true));
+            builder.SetPiece(new Bishop(new Cordinate(2, 0), Alliance.BLACK, true));
+            builder.SetPiece(new Queen(new Cordinate(3, 0), Alliance.BLACK, true));
+            builder.SetPiece(new King(new Cordinate(4, 0), Alliance.BLACK, true));
+            builder.SetPiece(new Bishop(new Cordinate(5, 0), Alliance.BLACK, true));
+            builder.SetPiece(new Knigth(new Cordinate(6, 0), Alliance.BLACK, true));
+            builder.SetPiece(new Rock(new Cordinate(7, 0), Alliance.BLACK, true));
             
-            builder.SetPiece(new Pawn(new Cordinate(0, 1), Alliance.BLACK));
-            builder.SetPiece(new Pawn(new Cordinate(1, 1), Alliance.BLACK));
-            builder.SetPiece(new Pawn(new Cordinate(2, 1), Alliance.BLACK));
-            builder.SetPiece(new Pawn(new Cordinate(3, 1), Alliance.BLACK));
-            builder.SetPiece(new Pawn(new Cordinate(4, 1), Alliance.BLACK));
-            builder.SetPiece(new Pawn(new Cordinate(5, 1), Alliance.BLACK));
-            builder.SetPiece(new Pawn(new Cordinate(6, 1), Alliance.BLACK));
-            builder.SetPiece(new Pawn(new Cordinate(7, 1), Alliance.BLACK));
+            builder.SetPiece(new Pawn(new Cordinate(0, 1), Alliance.BLACK, true));
+            builder.SetPiece(new Pawn(new Cordinate(1, 1), Alliance.BLACK, true));
+            builder.SetPiece(new Pawn(new Cordinate(2, 1), Alliance.BLACK, true));
+            builder.SetPiece(new Pawn(new Cordinate(3, 1), Alliance.BLACK, true));
+            builder.SetPiece(new Pawn(new Cordinate(4, 1), Alliance.BLACK, true));
+            builder.SetPiece(new Pawn(new Cordinate(5, 1), Alliance.BLACK, true));
+            builder.SetPiece(new Pawn(new Cordinate(6, 1), Alliance.BLACK, true));
+            builder.SetPiece(new Pawn(new Cordinate(7, 1), Alliance.BLACK, true));
 
             //Set the WHITE pieces
-            builder.SetPiece(new Rock(new Cordinate(0, 7), Alliance.WHITE));
-            builder.SetPiece(new Knigth(new Cordinate(1, 7), Alliance.WHITE));
-            builder.SetPiece(new Bishop(new Cordinate(2, 7), Alliance.WHITE));
-            builder.SetPiece(new King(new Cordinate(3, 7), Alliance.WHITE));
-            builder.SetPiece(new Queen(new Cordinate(4, 7), Alliance.WHITE));
-            builder.SetPiece(new Bishop(new Cordinate(5, 7), Alliance.WHITE));
-            builder.SetPiece(new Knigth(new Cordinate(6, 7), Alliance.WHITE));
-            builder.SetPiece(new Rock(new Cordinate(7, 7), Alliance.WHITE));
+            builder.SetPiece(new Rock(new Cordinate(0, 7), Alliance.WHITE, true));
+            builder.SetPiece(new Knigth(new Cordinate(1, 7), Alliance.WHITE, true));
+            builder.SetPiece(new Bishop(new Cordinate(2, 7), Alliance.WHITE, true));
+            builder.SetPiece(new Queen(new Cordinate(3, 7), Alliance.WHITE, true));
+            builder.SetPiece(new King(new Cordinate(4, 7), Alliance.WHITE, true));
+            builder.SetPiece(new Bishop(new Cordinate(5, 7), Alliance.WHITE, true));
+            builder.SetPiece(new Knigth(new Cordinate(6, 7), Alliance.WHITE, true));
+            builder.SetPiece(new Rock(new Cordinate(7, 7), Alliance.WHITE, true));
 
-            builder.SetPiece(new Pawn(new Cordinate(0, 6), Alliance.WHITE));
-            builder.SetPiece(new Pawn(new Cordinate(1, 6), Alliance.WHITE));
-            builder.SetPiece(new Pawn(new Cordinate(2, 6), Alliance.WHITE));
-            builder.SetPiece(new Pawn(new Cordinate(3, 6), Alliance.WHITE));
-            builder.SetPiece(new Pawn(new Cordinate(4, 6), Alliance.WHITE));
-            builder.SetPiece(new Pawn(new Cordinate(5, 6), Alliance.WHITE));
-            builder.SetPiece(new Pawn(new Cordinate(6, 6), Alliance.WHITE));
-            builder.SetPiece(new Pawn(new Cordinate(7, 6), Alliance.WHITE));
+            builder.SetPiece(new Pawn(new Cordinate(0, 6), Alliance.WHITE, true));
+            builder.SetPiece(new Pawn(new Cordinate(1, 6), Alliance.WHITE, true));
+            builder.SetPiece(new Pawn(new Cordinate(2, 6), Alliance.WHITE, true));
+            builder.SetPiece(new Pawn(new Cordinate(3, 6), Alliance.WHITE, true));
+            builder.SetPiece(new Pawn(new Cordinate(4, 6), Alliance.WHITE, true));
+            builder.SetPiece(new Pawn(new Cordinate(5, 6), Alliance.WHITE, true));
+            builder.SetPiece(new Pawn(new Cordinate(6, 6), Alliance.WHITE, true));
+            builder.SetPiece(new Pawn(new Cordinate(7, 6), Alliance.WHITE, true));
 
             builder.SetNextMoveMaker(Alliance.WHITE);
             return builder.Build();

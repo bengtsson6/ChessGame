@@ -12,7 +12,7 @@ namespace ChessGame.Pieces
 {
     public class Pawn : Piece
     {
-        public Pawn(Cordinate cordinate, Alliance alliance) : base(cordinate, alliance, PieceType.PAWN)
+        public Pawn(Cordinate cordinate, Alliance alliance, bool isFirstMove) : base(cordinate, alliance, PieceType.PAWN, isFirstMove)
         {
         }
 
@@ -73,7 +73,7 @@ namespace ChessGame.Pieces
                         }
                         if(!potentialDestinationTile.IsTileOccupied() && !jumpedOverTile.IsTileOccupied())
                         {
-                            legalMoves.Add(new NonCaptureMove(this, currentCandidateCordinate, board));
+                            legalMoves.Add(new PawnJumpMove(this, currentCandidateCordinate, board));
                         }
                     }
                 }
@@ -84,7 +84,7 @@ namespace ChessGame.Pieces
 
         public override Piece MovePiece(Move move)
         {
-            return new Pawn(move.DestinationCordinate, move.MovingPiece.Alliance);
+            return new Pawn(move.DestinationCordinate, move.MovingPiece.Alliance, false);
         }
 
 

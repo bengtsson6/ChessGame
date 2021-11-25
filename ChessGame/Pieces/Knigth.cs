@@ -12,7 +12,7 @@ namespace ChessGame.Pieces
 {
     public class Knigth : Piece
     {
-        public Knigth(Cordinate cordinate, Alliance alliance) : base(cordinate, alliance, PieceType.KNIGTH)
+        public Knigth(Cordinate cordinate, Alliance alliance, bool isFirstMove) : base(cordinate, alliance, PieceType.KNIGTH, isFirstMove)
         {
         }
         public override List<Move> LegalMoves(Board board)
@@ -59,7 +59,7 @@ namespace ChessGame.Pieces
 
         public override Piece MovePiece(Move move)
         {
-            return new Knigth(move.DestinationCordinate, move.MovingPiece.Alliance);
+            return new Knigth(move.DestinationCordinate, move.MovingPiece.Alliance, false);
         }
     }
 }

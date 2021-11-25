@@ -49,8 +49,12 @@
   <ItemGroup>
     <Compile Include="Alliance.cs" />
     <Compile Include="GameBoard\Board.cs" />
+    <Compile Include="Moves\CastleMove.cs" />
+    <Compile Include="Moves\KingSideCastleMove.cs" />
     <Compile Include="Moves\MoveStatus.cs" />
     <Compile Include="Moves\MoveTransition.cs" />
+    <Compile Include="Moves\PawnJumpMove.cs" />
+    <Compile Include="Moves\QueenSideCastleMove.cs" />
     <Compile Include="Utils\BoardUtils.cs" />
     <Compile Include="GameBoard\Builder.cs" />
     <Compile Include="GameBoard\Cordinate.cs" />

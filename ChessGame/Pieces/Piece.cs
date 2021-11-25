@@ -14,12 +14,14 @@ namespace ChessGame.Pieces
         private Cordinate cordinate;
         private Alliance alliance;
         private PieceType pieceType;
+        private bool isFirstMove;
 
-        public Piece(Cordinate cordinate, Alliance alliance, PieceType pieceType)
+        public Piece(Cordinate cordinate, Alliance alliance, PieceType pieceType, bool isFirstMove)
         {
             this.Cordinate = cordinate;
             this.Alliance = alliance;
             this.PieceType = pieceType;
+            this.IsFirstMove = isFirstMove;
         }
         public override string ToString()
         {
@@ -60,5 +62,6 @@ namespace ChessGame.Pieces
         public Cordinate Cordinate { get => cordinate; set => cordinate = value; }
         public Alliance Alliance { get => alliance; set => alliance = value; }
         public PieceType PieceType { get => pieceType; set => pieceType = value; }
+        public bool IsFirstMove { get => isFirstMove; set => isFirstMove = value; }
     }
 }

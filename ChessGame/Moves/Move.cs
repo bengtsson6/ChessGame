@@ -44,7 +44,10 @@ namespace ChessGame.Moves
             hashCode = hashCode * -1521134295 + EqualityComparer<Board>.Default.GetHashCode(board);
             return hashCode;
         }
-
+        public virtual bool IsCastleMove()
+        {
+            return false;
+        }
         public Cordinate DestinationCordinate { get => destinationCordinate; set => destinationCordinate = value; }
         public Piece MovingPiece { get => movingPiece; set => movingPiece = value; }
         public Board Board { get => board; set => board = value; }
