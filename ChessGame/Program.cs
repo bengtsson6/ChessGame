@@ -8,6 +8,8 @@ using ChessGame.Game;
 using ChessGame.Utils;
 using ChessGame.Pieces;
 using ChessGame.Moves;
+using ChessGame.GUI;
+using System.Windows.Forms;
 
 namespace ChessGame
 {
@@ -17,7 +19,9 @@ namespace ChessGame
         {
             Board board = Board.SetPiecesStartPosition();
             Console.WriteLine(board.ToString());
-            Console.ReadLine();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new ChessGUI(board));
 
             /*Tile[,] tiles = board.GameBoard;
             for (int i = 0; i < 8; i++)
@@ -49,7 +53,7 @@ namespace ChessGame
                 Console.WriteLine(move.DestinationCordinate.XCordinate + "," + move.DestinationCordinate.YCordinate);
             }
             Console.ReadLine();*/
-        
+
 
             //Do some test for the player class
             //Get opponent is workning
