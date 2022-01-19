@@ -16,23 +16,29 @@ namespace ChessGame.GUI
         public BoardPanel() : base()
         {
             tilePanels = new TilePanel[8, 8];
+            DoubleBuffered = true;
         }
 
-        public void PaintBoardGrid(Board board)
+        public void PaintBoardGrid(Controller controller)
         {
-            this.Controls.Clear();
+            Update();
+            SuspendLayout();
+            Controls.Clear();
+            
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    Tile tile = board.GetTile(new Cordinate(i, j));
-                    TilePanel gridTile = new TilePanel(tile);
+                    Cordinate cordinate = new Cordinate(i, j);
+                    TilePanel gridTile = new TilePanel(cordinate, controller);
                     Point point = new Point(i * 50, j*50);
                     gridTile.Location = (point);
                     tilePanels[i, j] = gridTile;
                     this.Controls.Add(gridTile);
                 }
             }
+            SetStartColor();
+            ResumeLayout();
         }
         public void SetStartColor()
         {

@@ -171,5 +171,16 @@ namespace ChessGame.GameBoard
         {
             return GameBoard[cordinate.XCordinate, cordinate.YCordinate]; 
         }
+        public Move GetLegalMove(Cordinate startCordinate, Cordinate destinationCordinate)
+        {
+            foreach (Move move in currentPlayer.LegalMoves)
+            {
+                if (move.MovingPiece.Cordinate.Equals(startCordinate) && move.DestinationCordinate.Equals(destinationCordinate))
+                {
+                    return move;
+                }
+            }
+            return null;
+        }
     }
 }

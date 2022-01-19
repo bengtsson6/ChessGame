@@ -7,30 +7,34 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ChessGame.GameBoard;
 using ChessGame.Moves;
+using ChessGame.Pieces;
 
 namespace ChessGame.GUI
 {
-    public class TilePanel:Panel
+    public class TilePanel : Panel
     {
-        private Tile tile;
+        private Cordinate cordinate;
         private Label textLabel;
-        public TilePanel(Tile tile) : base()
+        private Controller controller;
+        private Board board;
+        public TilePanel(Cordinate cordinate, Controller controller) : base()
         {
+            Cordinate = cordinate;
+            Controller = controller;
             this.Height = 50;
             this.Width = 50;
-            this.BorderStyle = BorderStyle.Fixed3D;
-            Tile = tile;
-            CreateLabel(Tile);
-           // this.Click += TilePanel_Click;
-            
-        }
+            this.BorderStyle = BorderStyle.Fixed3D;            
+            CreateLabel(Cordinate);
+            this.Click += controller.TilePanel_Click;
+            DoubleBuffered = true;
 
-        private void CreateLabel(Tile tile)
+        }
+        private void CreateLabel(Cordinate cordinate)
         {
-            if (tile.IsTileOccupied())
+            if (Controller.Board.GetTile(cordinate).IsTileOccupied())
             {
                 Label label = new Label();
-                label.Text = tile.GetPiece().ToString();
+                label.Text = Controller.Board.GetTile(cordinate).GetPiece().ToString();
                 //label.Click += Label_Click;
                 this.Controls.Add(label);
             }
@@ -47,7 +51,9 @@ namespace ChessGame.GUI
             }
         }*/
 
-        public Tile Tile { get => tile; set => tile = value; }
         public Label TextLabel { get => textLabel; set => textLabel = value; }
+        public Cordinate Cordinate { get => cordinate; set => cordinate = value; }
+        public Controller Controller { get => controller; set => controller = value; }
+        public Board Board { get => board; set => board = value; }
     }
 }

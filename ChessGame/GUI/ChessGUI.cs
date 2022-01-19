@@ -14,72 +14,68 @@ using ChessGame.Moves;
 
 namespace ChessGame.GUI
 {
-    public partial class ChessGUI : Form
+    public partial class Controller : Form
     {
         private Board board;
-        private Tile selectedTilePanel;
+        private Cordinate selectedStartTileCordinate;
+        private Cordinate selectedDestinationTileCordinate;
         public Board Board { get => board; set => board = value; }
-        public Tile SelectedTilePanel { get => selectedTilePanel; set => selectedTilePanel = value; }
+        public Cordinate SelectedStartTileCordinate { get => selectedStartTileCordinate; set => selectedStartTileCordinate = value; }
+        public Cordinate SelectedDestinationTileCordinate { get => selectedDestinationTileCordinate; set => selectedDestinationTileCordinate = value; }
 
-        public ChessGUI(Board board)
+        public Controller(Board board)
         {
             InitializeComponent();
             Board = board;
-            PaintChessBoard(board);
-            AddTileClickEvent();
+            PaintChessBoard();
         }
 
-        private void PaintChessBoard(Board board)
+        private void PaintChessBoard()
         {
-            this.ChessBoardPanel.PaintBoardGrid(board);
-            this.ChessBoardPanel.SetStartColor();
+            ChessBoardPanel.PaintBoardGrid(this);
         }
-
-        private void AddTileClickEvent()
-        {
-            foreach (TilePanel tilePanel in ChessBoardPanel.TilePanels)
-            {
-                tilePanel.Click += TilePanel_Click;
-            }
-        }
-
-
-        private void TilePanel_Click(object sender, EventArgs e)
+        public void TilePanel_Click(object sender, EventArgs e)
         {
             ChessBoardPanel.SetStartColor();
-            if (sender is TilePanel)
+            TilePanel clickedTile = (TilePanel)sender;
+            Tile boardTile = Board.GetTile(clickedTile.Cordinate);
+            if (selectedStartTileCordinate != null)
             {
-                TilePanel clickedTile = (TilePanel)sender;
-                Tile boardTile = clickedTile.Tile;
-                if (boardTile.IsTileOccupied())
+                selectedDestinationTileCordinate = clickedTile.Cordinate;
+                Move move = Board.GetLegalMove(SelectedStartTileCordinate, SelectedDestinationTileCordinate);
+                MoveTransition moveTransition = Board.CurrentPlayer.MakeMove(move);
+                MessageBox.Show(moveTransition.MoveStatus.ToString());
+                if (moveTransition.MoveStatus == MoveStatus.DONE)
                 {
-                    this.SelectedTilePanel = boardTile;
-                    Piece piece = boardTile.GetPiece();
-                    List<Move> moves;
-                    if (piece.Alliance == Alliance.BLACK)
-                    {
-                        moves = board.BlackPlayer.LegalMoves;
-                    }
-                    else
-                    {
-                        moves = board.WhitePlayer.LegalMoves;
-                    }
+                    selectedDestinationTileCordinate = null;
+                    selectedStartTileCordinate = null;
+                    Board = moveTransition.TransitionBoard;
+                    ChessBoardPanel.PaintBoardGrid(this);
+                }
+            }
+            if (boardTile.IsTileOccupied())
+            {
+                if (boardTile.GetPiece().Alliance == Board.CurrentPlayer.Alliance)
+                {
+                    SelectedStartTileCordinate = boardTile.Cordinate;
+                    List<Move> moves = Board.CurrentPlayer.LegalMoves;
                     HighligthTile(moves, boardTile);
                 }
-            } 
+            }            
         }
-
         private void HighligthTile(List<Move> moves, Tile boardTile)
         {
+            //Something need to be done to highligth castle move
             foreach (Move move in moves)
             {
                 if (move.MovingPiece.Cordinate.Equals(boardTile.Cordinate))
                 {
                     foreach (TilePanel tilePanel in ChessBoardPanel.TilePanels)
                     {
-                        if (tilePanel.Tile.Cordinate.Equals(move.DestinationCordinate))
+                        if (tilePanel.Cordinate.Equals(move.DestinationCordinate))
                         {
                             tilePanel.BackColor = Color.Cyan;
+
                         }
                     }
                 }

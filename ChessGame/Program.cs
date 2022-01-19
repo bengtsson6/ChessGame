@@ -21,7 +21,7 @@ namespace ChessGame
             Console.WriteLine(board.ToString());
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ChessGUI(board));
+            Application.Run(new Controller(board));
 
             /*Tile[,] tiles = board.GameBoard;
             for (int i = 0; i < 8; i++)
